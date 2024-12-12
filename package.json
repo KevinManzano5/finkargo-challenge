@@ -2,7 +2,11 @@
   "name": "finkargo-challenge",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "clean": "rimraf target",
+    "test": "npm run clean && npx playwright test",
+    "report": "serenity-bdd run"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,5 +21,8 @@
     "@serenity-js/serenity-bdd": "^3.31.0",
     "@serenity-js/web": "^3.31.0",
     "@types/node": "^22.10.2"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
   }
 }

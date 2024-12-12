@@ -14,7 +14,12 @@ const config: PlaywrightTestConfig = {
       "@serenity-js/playwright-test",
       {
         crew: [
-          ["@serenity-js/serenity-bdd", {}],
+          [
+            "@serenity-js/serenity-bdd",
+            {
+              specDirectory: "./tests",
+            },
+          ],
           [
             "@serenity-js/core:ArtifactArchiver",
             { outputDirectory: "target/site/serenity" },

@@ -1,5 +1,5 @@
 import { Task } from "@serenity-js/core";
-import { Click, Enter, Select, TakeScreenshot } from "@serenity-js/web";
+import { Click, Enter, Select } from "@serenity-js/web";
 
 import {
   addressTextarea,
@@ -13,7 +13,6 @@ import {
   monthOfBirthSelect,
   phoneNumberInput,
   subjectsInput,
-  submitButton,
   yearOfBirthSelect,
 } from "../questions/form.question";
 
@@ -35,7 +34,7 @@ export const fillForm = ({
   subjects,
 }: Options): Task =>
   Task.where(
-    `IDK`,
+    `User fills form`,
     Enter.theValue(firstName).into(firstNameInput()),
     Enter.theValue(lastName).into(lastNameInput()),
     Enter.theValue(email).into(emailInput()),
@@ -47,7 +46,5 @@ export const fillForm = ({
     Click.on(dayOfBirthOption()),
     Enter.theValue(subjects).into(subjectsInput()),
     Click.on(hobbiesCheckbox()),
-    Enter.theValue(address).into(addressTextarea()),
-    Click.on(submitButton()),
-    TakeScreenshot.of("app")
+    Enter.theValue(address).into(addressTextarea())
   );

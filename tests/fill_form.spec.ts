@@ -1,9 +1,7 @@
 import { describe, it } from "@serenity-js/playwright-test";
-import { isVisible, Navigate } from "@serenity-js/web";
-import { Ensure } from "@serenity-js/assertions";
+import { Navigate } from "@serenity-js/web";
 
-import { fillForm } from "./tasks/fill_form.task";
-import { modal } from "./questions/form.question";
+import { fillForm, submitForm, validateFormSended } from "./tasks";
 
 describe("Fill form", () => {
   it("User fill form", async ({ actor }) => {
@@ -17,7 +15,8 @@ describe("Fill form", () => {
         phoneNumber: "3123456789",
         subjects: "Testing",
       }),
-      Ensure.that(modal, isVisible())
+      submitForm(),
+      validateFormSended()
     );
   });
 });
