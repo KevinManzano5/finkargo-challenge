@@ -7,14 +7,7 @@ describe("Fill form", () => {
   it("User fill form", async ({ actor }) => {
     await actor.attemptsTo(
       Navigate.to("/automation-practice-form"),
-      fillForm({
-        address: "Mason Street",
-        email: "john@gmail.com",
-        firstName: "John",
-        lastName: "Doe",
-        phoneNumber: "3123456789",
-        subjects: "Testing",
-      }),
+      fillForm(),
       submitForm(),
       validateFormSended()
     );

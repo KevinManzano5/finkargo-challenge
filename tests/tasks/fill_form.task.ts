@@ -1,5 +1,6 @@
 import { Task } from "@serenity-js/core";
 import { Click, Enter, Select } from "@serenity-js/web";
+import { fakerEN_US as faker } from "@faker-js/faker";
 
 import {
   addressTextarea,
@@ -16,35 +17,21 @@ import {
   yearOfBirthSelect,
 } from "../questions/form.question";
 
-export interface Options {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  subjects: string;
-  address: string;
-}
-
-export const fillForm = ({
-  address,
-  email,
-  firstName,
-  lastName,
-  phoneNumber,
-  subjects,
-}: Options): Task =>
+export const fillForm = (): Task =>
   Task.where(
     `User fills form`,
-    Enter.theValue(firstName).into(firstNameInput()),
-    Enter.theValue(lastName).into(lastNameInput()),
-    Enter.theValue(email).into(emailInput()),
+    Enter.theValue(faker.person.firstName()).into(firstNameInput()),
+    Enter.theValue(faker.person.lastName()).into(lastNameInput()),
+    Enter.theValue(faker.internet.email()).into(emailInput()),
     Click.on(genderLabel()),
-    Enter.theValue(phoneNumber).into(phoneNumberInput()),
+    Enter.theValue(
+      faker.phone.number({ style: 'international' }).replace("+", "")
+    ).into(phoneNumberInput()),
     Click.on(dateOfBirthInput()),
     Select.value("9").from(monthOfBirthSelect()),
     Select.value("2003").from(yearOfBirthSelect()),
     Click.on(dayOfBirthOption()),
-    Enter.theValue(subjects).into(subjectsInput()),
+    Enter.theValue(faker.person.jobArea()).into(subjectsInput()),
     Click.on(hobbiesCheckbox()),
-    Enter.theValue(address).into(addressTextarea())
+    Enter.theValue(faker.location.streetAddress()).into(addressTextarea())
   );
