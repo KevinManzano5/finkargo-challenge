@@ -37,6 +37,8 @@ export const subjectsInput = () => PageElement.located(By.id("subjectsInput"));
 export const hobbiesCheckbox = () =>
   PageElement.located(By.xpath("//label[@for='hobbies-checkbox-3']"));
 
+export const pictureInput = () => PageElement.located(By.id("uploadPicture"));
+
 export const addressTextarea = () =>
   PageElement.located(By.id("currentAddress"));
 

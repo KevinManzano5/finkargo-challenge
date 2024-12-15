@@ -15,7 +15,7 @@ import {
   phoneNumberInput,
   subjectsInput,
   yearOfBirthSelect,
-} from "../questions/form.question";
+} from "../pages/form.page";
 
 export const fillForm = (): Task =>
   Task.where(
@@ -25,7 +25,7 @@ export const fillForm = (): Task =>
     Enter.theValue(faker.internet.email()).into(emailInput()),
     Click.on(genderLabel()),
     Enter.theValue(
-      faker.phone.number({ style: 'international' }).replace("+", "")
+      faker.phone.number({ style: "international" }).replace("+", "")
     ).into(phoneNumberInput()),
     Click.on(dateOfBirthInput()),
     Select.value("9").from(monthOfBirthSelect()),
