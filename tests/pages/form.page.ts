@@ -42,9 +42,5 @@ export const pictureInput = () => PageElement.located(By.id("uploadPicture"));
 export const addressTextarea = () =>
   PageElement.located(By.id("currentAddress"));
 
-export const modal = PageElement.located(
-  By.xpath("//div[@class='modal-content']")
-);
-
 export const submitButton = () =>
   PageElement.located(By.id("submit")).describedAs("Submit button");

@@ -2,6 +2,7 @@ import path from "path";
 import { cwd } from "process";
 import { Page } from "@playwright/test";
 import { Interaction, Task } from "@serenity-js/core";
+import { TakeScreenshot } from "@serenity-js/web";
 
 export const uploadImage = (page: Page): Task =>
   Task.where(
@@ -10,5 +11,6 @@ export const uploadImage = (page: Page): Task =>
       await page
         .locator("css=#uploadPicture")
         .setInputFiles([path.join(`${cwd()}/uploads`, "image.jpg")]);
-    })
+    }),
+    TakeScreenshot.of("Form Sended")
   );
