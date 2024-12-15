@@ -6,7 +6,7 @@ import { modal } from "../pages/form.page";
 
 export const validateFormSended = (): Task =>
   Task.where(
-    `User validates form sended`,
+    `#actor validates form sended`,
     Ensure.that(modal, isVisible()),
     TakeScreenshot.of("app")
   );

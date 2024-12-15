@@ -5,7 +5,7 @@ import { Interaction, Task } from "@serenity-js/core";
 
 export const uploadImage = (page: Page): Task =>
   Task.where(
-    `User upload picture`,
+    `#actor upload picture`,
     Interaction.where(`User select picture`, async () => {
       await page
         .locator("css=#uploadPicture")
