@@ -1,13 +1,29 @@
-import { describe, it } from "@serenity-js/playwright-test";
-import { Navigate } from "@serenity-js/web";
+import { describe, it, test } from "@serenity-js/playwright-test";
+import { actorCalled } from "@serenity-js/core";
+import { BrowseTheWebWithPlaywright } from "@serenity-js/playwright";
 
-import { fillForm, submitForm, validateFormSended } from "./tasks";
+import { fillForm, submitForm, uploadImage, validateFormSended } from "./tasks";
 
-describe("Fill form", () => {
-  it("User fill form", async ({ actor }) => {
+test.use({
+  actorCalled: async ({ actorCalled, contextOptions, page }, use) => {
+    await use((name: string) => {
+      return actorCalled(name).whoCan(
+        BrowseTheWebWithPlaywright.usingPage(page, contextOptions)
+      );
+    });
+  },
+});
+
+describe("Practice Form", () => {
+  it("should allow the form to be submitted if all the data is correct", async ({
+    actor,
+    page,
+  }) => {
+    actor = actorCalled("Tony");
+
     await actor.attemptsTo(
-      Navigate.to("/automation-practice-form"),
       fillForm(),
+      uploadImage(page),
       submitForm(),
       validateFormSended()
     );

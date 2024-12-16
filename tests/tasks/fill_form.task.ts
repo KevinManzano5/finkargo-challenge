@@ -1,5 +1,5 @@
 import { Task } from "@serenity-js/core";
-import { Click, Enter, Select } from "@serenity-js/web";
+import { Click, Enter, Navigate, Select } from "@serenity-js/web";
 import { fakerEN_US as faker } from "@faker-js/faker";
 
 import {
@@ -15,17 +15,18 @@ import {
   phoneNumberInput,
   subjectsInput,
   yearOfBirthSelect,
-} from "../questions/form.question";
+} from "../pages/form.page";
 
 export const fillForm = (): Task =>
   Task.where(
-    `User fills form`,
+    `#actor fills form`,
+    Navigate.to("/automation-practice-form"),
     Enter.theValue(faker.person.firstName()).into(firstNameInput()),
     Enter.theValue(faker.person.lastName()).into(lastNameInput()),
     Enter.theValue(faker.internet.email()).into(emailInput()),
     Click.on(genderLabel()),
     Enter.theValue(
-      faker.phone.number({ style: 'international' }).replace("+", "")
+      faker.phone.number({ style: "international" }).replace("+", "")
     ).into(phoneNumberInput()),
     Click.on(dateOfBirthInput()),
     Select.value("9").from(monthOfBirthSelect()),
